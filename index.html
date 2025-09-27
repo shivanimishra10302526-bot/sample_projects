@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Portfolio App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hamburger" id="hamburger" tabindex="0" aria-label="Open menu" role="button">
+    <span></span><span></span><span></span>
+  </div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>Menu</h2>
+      <button id="closeSidebar" aria-label="Close menu">&times;</button>
+    </div>
+    <div class="sidebar-content">
+      <p><b>Advanced Portfolio App</b><br>All-in-one professional web tools and showcase.</p>
+      <div class="sidebar-images">
+        <img src="https://cdn-icons-png.flaticon.com/512/3176/3176363.png" alt="To-Do" title="To-Do List" />
+        <img src="https://cdn-icons-png.flaticon.com/512/1163/1163661.png" alt="Weather" title="Weather App" />
+        <img src="https://cdn-icons-png.flaticon.com/512/2721/2721297.png" alt="Converter" title="Unit Converter" />
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Portfolio" title="Portfolio" />
+        <img src="https://cdn-icons-png.flaticon.com/512/992/992651.png" alt="Calculator" title="Calculator" />
+      </div>
+      <ul class="sidebar-links">
+        <li><a href="#todo">To-Do List</a></li>
+        <li><a href="#weather">Weather</a></li>
+        <li><a href="#converter">Unit Converter</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#calculator">Calculator</a></li>
+      </ul>
+      <div class="sidebar-actions">
+        <button id="registerBtn">Register</button>
+        <button id="loginBtn">Login</button>
+        <button id="logoutBtn" style="display:none;">Logout</button>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- Registration Modal (moved outside sidebar) -->
+  <div class="modal" id="registerModal" tabindex="-1" aria-modal="true" style="display:none;">
+    <div class="modal-content">
+      <button class="modal-close" id="closeRegisterModal" aria-label="Close">&times;</button>
+      <h2>Register</h2>
+      <form id="registerForm">
+        <label>Name:<br><input type="text" id="regName" name="name" required></label><br>
+        <label>Email:<br><input type="email" id="regEmail" name="email" required></label><br>
+        <label>Phone Number:<br><input type="tel" id="regPhone" name="phone" required></label><br>
+        <label>Location:<br><input type="text" id="regLocation" name="location" required></label><br>
+        <button type="submit">Register</button>
+      </form>
+    </div>
+  </div>
+  </aside>
+  <header class="hero">
+    <img src="assets/hero-bg.jpg" alt="Hero Background" class="hero-bg" />
+    <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=80" alt="Hero Background" class="hero-bg" />
+    <!-- Background motion effect video -->
+    <video class="hero-video" autoplay loop muted playsinline poster="assets/hero-bg.jpg">
+      <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-content">
+      <h1>Welcome to My Advanced Portfolio</h1>
+      <p>Explore professional web apps and tools, all in one place.</p>
+    </div>
+  </header>
+    <!-- Decorative floating images -->
+    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" class="hero-float hero-float1" alt="Decorative 1" />
+    <img src="https://cdn-icons-png.flaticon.com/512/1163/1163624.png" class="hero-float hero-float2" alt="Decorative 2" />
+    <img src="https://cdn-icons-png.flaticon.com/512/2721/2721297.png" class="hero-float hero-float3" alt="Decorative 3" />
+
+  <nav class="main-nav">
+    <ul>
+      <li>
+        <a href="#todo" class="nav-card">
+          <img src="assets/todo.png" alt="To-Do List" />
+          <span>To-Do List</span>
+        </a>
+      </li>
+      <li>
+        <a href="#weather" class="nav-card">
+          <img src="assets/weather.png" alt="Weather App" />
+          <span>Weather</span>
+        </a>
+      </li>
+      <li>
+        <a href="#converter" class="nav-card">
+          <img src="assets/converter.png" alt="Unit Converter" />
+          <span>Unit Converter</span>
+        </a>
+      </li>
+      <li>
+        <a href="#portfolio" class="nav-card">
+          <img src="assets/portfolio.png" alt="Portfolio" />
+          <span>Portfolio</span>
+        </a>
+      </li>
+      <li>
+        <a href="#calculator" class="nav-card">
+          <img src="assets/calculator.png" alt="Calculator" />
+          <span>Calculator</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <main id="app">
+    <!-- Dynamic content will be loaded here -->
+  </main>
+  <footer>
+    <p>© 2025 Your Name. All rights reserved.</p>
+  </footer>
+  <script src="app.js"></script>
+  <script>
+    // Hamburger and sidebar logic
+    const hamburger = document.getElementById('hamburger');
+    const sidebar = document.getElementById('sidebar');
+    const closeSidebar = document.getElementById('closeSidebar');
+    hamburger.onclick = () => sidebar.classList.add('open');
+    closeSidebar.onclick = () => sidebar.classList.remove('open');
+    window.onclick = e => {
+      if (e.target === sidebar) sidebar.classList.remove('open');
+      if (e.target === registerModal) registerModal.style.display = 'none';
+    };
+    // Register/Login/Logout logic (demo only)
+    const registerBtn = document.getElementById('registerBtn');
+    const loginBtn = document.getElementById('loginBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    function setLoggedIn(loggedIn) {
+      loginBtn.style.display = loggedIn ? 'none' : '';
+      registerBtn.style.display = loggedIn ? 'none' : '';
+      logoutBtn.style.display = loggedIn ? '' : 'none';
+    }
+    // Registration modal logic
+    const registerModal = document.getElementById('registerModal');
+    const closeRegisterModal = document.getElementById('closeRegisterModal');
+    registerBtn.onclick = () => { registerModal.style.display = 'flex'; };
+    closeRegisterModal.onclick = () => { registerModal.style.display = 'none'; };
+    document.getElementById('registerForm').onsubmit = function(e) {
+      e.preventDefault();
+      // Demo: just show alert and close
+      alert('Registered!\nName: ' + regName.value + '\nEmail: ' + regEmail.value + '\nPhone: ' + regPhone.value + '\nLocation: ' + regLocation.value);
+      registerModal.style.display = 'none';
+      setLoggedIn(true);
+    };
+    loginBtn.onclick = () => { alert('Login is demo only.'); setLoggedIn(true); };
+    logoutBtn.onclick = () => { alert('Logged out.'); setLoggedIn(false); };
+    setLoggedIn(false);
+  </script>
+</body>
+</html>
